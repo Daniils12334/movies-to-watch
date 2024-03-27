@@ -20,21 +20,39 @@ while True:
     if choice == "1":
         # https://www.w3schools.com/python/python_dictionaries.asp
         # https://www.w3schools.com/python/python_lists_add.asp
-        title = input("Enter movie title: ")
-        rating = input("Enter movie rating: ")
+        movie = {
+            "title" : input(str("Enter movie name: ")),
+            "rating" : input(str("Enter movie rating: ")),
+            "watched" : "False"
+        }
+        movies.append(movie)
+        with open("movies.json", "w") as outfile:
+            json.dump(movies, outfile)
+
+
         pass
     elif choice == "2":
         # https://www.w3schools.com/python/python_lists_sort.asp
         # https://www.w3schools.com/python/python_dictionaries_access.asp
+        def sort_rating(movie):
+            return int(movie["rating"])
+        movies.sort(key = sort_rating, reverse = False)
+        print(movies)
         pass
     elif choice == "3":
         # https://www.w3schools.com/python/python_lists_comprehension.asp
         # https://www.w3schools.com/python/python_dictionaries_access.asp
+        movies = [x for x in movies if "watched" in x]
+        print(movies)
+
         pass
     elif choice == "4":
         # https://www.w3schools.com/python/python_lists_change.asp
         # https://www.w3schools.com/python/python_dictionaries_change.asp
-        id = int(input("Enter the index of the movie to mark: "))
+        id = int(input("Enter the index of the movie to mark: "))        
+        #int(movies["title"]).update({"watched" : "True"})
+        movies["watched"] = {}
+        movie["watched"] = "True"
     elif choice == "5":
         # https://www.w3schools.com/python/python_lists_remove.asp
         id = int(input("Enter the index of the movie to remove: "))
